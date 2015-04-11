@@ -1,9 +1,11 @@
 class Atm
   def initialize(withdrawal_and_balance = "")
-    input = withdrawal_and_balance.split
+    input       = withdrawal_and_balance.split
     @withdrawal = input[0].to_i
-    @balance    = input[1].to_i
-    puts "withdrawal: #{@withdrawal} and balance: #{@balance}"
+    @balance    = input[1].to_f
+    @new_bal    = "%.2f" % @balance
+    
+    puts "withdrawal: #{@withdrawal} and balance: #{@new_bal}"
     puts @withdrawal % 5 
     valid_multiple
     valid_amount
@@ -11,7 +13,7 @@ class Atm
 
   def valid_amount
     if @withdrawal > @balance
-      puts "You're trying to take out more than what you have! Your balance #{@balance}."
+      puts "Insufficient funds! Your balance is only #{@new_bal}."
       exit
     end
   end
